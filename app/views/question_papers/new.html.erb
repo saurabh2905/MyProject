@@ -1,0 +1,30 @@
+<h1>Add a Question</h1>
+<%= form_for :problem, url: question_papers_add_question_path, method: :POST do |p| %>
+	<p>
+		<%= p.label :Problem_Statement %><br>
+		<%= p.text_area :question %>
+	</p>
+	<p>
+		<%= label_tag(:OptionA,"Option A") %>
+		<%= p.text_area :optionA %>
+	</p>
+	<p>
+		<%= label_tag(:OptionB,"Option B") %>
+		<%= p.text_area :optionB %>
+	</p>
+	<p>
+		<%= label_tag(:OptionC,"Option C") %>
+		<%= p.text_area :optionC %>
+	</p>
+	<p>
+		<%= label_tag(:OptionD,"Option D") %>
+		<%= p.text_area :optionD %>
+	</p>
+	<p>
+		<%= label_tag(:correct,"Choose correct option") %>
+		<%= p.select :correct_choice ,['A','B','C','D'] %>
+	</p>
+	<p>
+		<%= p.submit text = "Add" %>
+	</p>
+<% end %>

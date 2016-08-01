@@ -1,0 +1,11 @@
+<%= form_for :xyz do |f| %>
+	<%= f.radio_button :contactmethod, 'optionA' %>
+	<%= label :contactmethod_email, "#{@problem.optionA}" %><br>
+	<%= f.radio_button :contactmethod, 'optionB' %>
+	<%= label :contactmethod_email, "#{problem.optionB}" %><br>
+	<%= f.radio_button :contactmethod, 'optionC' %>
+	<%= label :contactmethod_email, "#{problem.optionC}" %><br>
+	<%= f.radio_button :contactmethod, 'optionD' %>
+	<%= label :contactmethod_email, "#{problem.optionC}" %><br>
+	<%= f.submit %>
+<% end %>

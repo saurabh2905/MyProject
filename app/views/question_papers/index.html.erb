@@ -1,0 +1,40 @@
+<style>
+  #foo {
+    position: fixed;
+    top: 0;
+    right: 0;
+  }
+  </style>
+
+<% if session[:login]!=nil %>
+	<% puts "** index view email #{session[:login]["email"]}" %>
+	<div id ="foo">
+	<p>Welcome 
+	<%= session[:login]["email"] %>
+	<%= link_to "Log Out", logins_logout_path, :method =>"get" %>
+	</p>
+
+	</div>
+<% end %>
+<h1>Problems to be Solved</h1>
+<% count=1 %>
+<%= form_for :xyzw, url: question_papers_score_path, method: :POST do |m| %>
+<% @problems.each do |problem| %>
+	<p>
+		<%= count %>.
+		<% count=count+1 %>
+		<%= problem.question %>
+	</p>
+	
+	<%= radio_button_tag :"#{problem.id}", 'A' %>
+	<%= label :contactmethod_email, "#{problem.optionA}" %><br>
+	<%= radio_button_tag :"#{problem.id}", 'B' %>
+	<%= label :contactmethod_email, "#{problem.optionB}" %><br>
+	<%= radio_button_tag :"#{problem.id}", 'C' %>
+	<%= label :contactmethod_email, "#{problem.optionC}" %><br>
+	<%= radio_button_tag :"#{problem.id}", 'D' %>
+	<%= label :contactmethod_email, "#{problem.optionC}" %><br>
+	
+<% end %><br>
+<%= m.submit text="Submit"  %>
+<% end %>
