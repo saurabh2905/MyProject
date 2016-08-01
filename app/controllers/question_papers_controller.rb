@@ -23,7 +23,7 @@ class QuestionPapersController < ApplicationController
 		puts params.inspect
 		puts "******"
 		puts params["1"]
-		puts "tttttt"
+		puts "******"
 		count=0
 		params2=params.except(:"authenticity_token",:"utf8",:"commit",:"controller",:"action")
 		params2.each { |key, value| 
