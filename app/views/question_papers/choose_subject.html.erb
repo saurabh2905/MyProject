@@ -12,8 +12,17 @@
 	<%= session[:user]["email"] %>
 	<%= link_to "Log Out", sessions_logout_path, :method =>"get" %>
 	</p>
-
 	</div>
 <% end %>
-<h1>Your Final Score</h1>
-<p><%= @percentage %> %</p>
+<div>
+<%= form_for :selected_subject, url: question_papers_selected_list_path ,method: :GET do |f| %>
+<p>
+		<%= label_tag(:subject,"Choose Subject") %>
+		<%= f.select(:subject ,["Physics","Maths","Chemistry","Biology"]) %>
+
+</p>
+<p>
+	<%= f.submit "Submit" %>
+</p>
+<% end %>
+</div>

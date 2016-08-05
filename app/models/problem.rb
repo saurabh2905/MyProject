@@ -1,9 +1,5 @@
 class Problem < ApplicationRecord
-	validates :question,:presence =>true,
-                    :uniqueness=>true
-    validates :optionA , :presence =>true
-    validates :optionB , :presence =>true
-    validates :optionC , :presence =>true
-    validates :optionD , :presence =>true
-    validates :correct_choice , :presence =>true
+	belongs_to :question_paper
+	validates :question,:presence =>true, :uniqueness =>true
+    validates :optionA ,:optionB ,:optionC ,:optionD, :correct_choice, :question_paper_id, :subject, :presence =>true
 end

@@ -1,0 +1,16 @@
+<style>
+  #foo {
+    position: fixed;
+    top: 0;
+    right: 0;
+  }
+  </style>
+<div id="foo">
+	<p>Welcome <%= @user.email %>
+		<%= link_to "Log Out", sessions_logout_path, :method =>"get" %>
+	</p>
+</div>
+<td><%= link_to 'Start the test', question_papers_choose_subject_path %></td>
+<% if @user.role=="admin" %>
+<td><%=link_to 'Add Questions', new_question_paper_path %></td>
+<% end %>	

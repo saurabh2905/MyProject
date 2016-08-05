@@ -1,0 +1,18 @@
+<h1>Register</h1>
+<%= form_for :user,url: users_path, method: :POST do |f| %>
+	<p>
+		<%= f.label :Email %><br>
+		<%= f.email_field :email %>
+	</p>
+	<p>
+		<%= f.label :Password %><br>
+		<%= f.password_field :password %>
+	</p>
+	<p>
+		<%= f.label :Confirm_Password %><br>
+		<%= f.password_field :password_confirmation %>
+	</p>
+	<p>
+		<%= f.submit text ="Register" %>
+	</p>
+<% end %>

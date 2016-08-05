@@ -12,16 +12,21 @@
 	<%= session[:user]["email"] %>
 	<%= link_to "Log Out", sessions_logout_path, :method =>"get" %>
 	</p>
+
 	</div>
 <% end %>
+<h2>Subject : <%=@problems[0]["subject"]%></h2>
 <h1>Problems to be Solved</h1>
+
 <% count=1 %>
+<%= form_for :submitted_solution, url: question_papers_score_path, method: :POST do |m| %>
 <% @problems.each do |problem| %>
 	<p>
 		<%= count %>.
 		<% count=count+1 %>
 		<%= problem.question %>
 	</p>
+	
 	<%= radio_button_tag :"#{problem.id}", 'A' %>
 	<%= label :contactmethod_email, "#{problem.optionA}" %><br>
 	<%= radio_button_tag :"#{problem.id}", 'B' %>
@@ -30,6 +35,8 @@
 	<%= label :contactmethod_email, "#{problem.optionC}" %><br>
 	<%= radio_button_tag :"#{problem.id}", 'D' %>
 	<%= label :contactmethod_email, "#{problem.optionC}" %><br>
+	
+<% end %><br>
+<%= m.hidden_field :count, :value => count-1 %>
+<%= m.submit "Submit"  %>
 <% end %>
-<br><br>
-<%= link_to "Add More Questions", new_question_paper_path, :method =>"get" %>

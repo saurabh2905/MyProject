@@ -10,24 +10,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160725100314) do
-
-  create_table "logins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
-    t.string   "email"
-    t.string   "password"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+ActiveRecord::Schema.define(version: 20160803124748) do
 
   create_table "problems", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
-    t.string   "question"
-    t.string   "optionA"
-    t.string   "optionB"
-    t.string   "optionC"
-    t.string   "optionD"
-    t.string   "correct_choice", limit: 1
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.text     "question",          limit: 65535
+    t.text     "optionA",           limit: 65535
+    t.text     "optionB",           limit: 65535
+    t.text     "optionC",           limit: 65535
+    t.text     "optionD",           limit: 65535
+    t.string   "correct_choice",    limit: 1
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.integer  "question_paper_id"
+    t.index ["question_paper_id"], name: "fk_rails_7b1197ddf4", using: :btree
   end
 
+  create_table "question_papers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.string   "subject"
+    t.integer  "number"
+    t.integer  "time_in_minutes"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.string   "email"
+    t.string   "password"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.string   "role",        default: "public"
+    t.integer  "problems_id"
+    t.index ["problems_id"], name: "index_users_on_problems_id", using: :btree
+  end
+
+  add_foreign_key "problems", "question_papers"
 end

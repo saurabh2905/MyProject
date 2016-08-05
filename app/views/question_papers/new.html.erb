@@ -1,6 +1,10 @@
 <h1>Add a Question</h1>
 <%= form_for :problem, url: question_papers_add_question_path, method: :POST do |p| %>
 	<p>
+		<%= label_tag(:subject,"Choose Subject") %>
+		<%= p.select :subject ,["Physics","Maths","Chemistry","Biology"] %>
+	</p>
+	<p>
 		<%= p.label :Problem_Statement %><br>
 		<%= p.text_area :question %>
 	</p>
@@ -25,6 +29,6 @@
 		<%= p.select :correct_choice ,['A','B','C','D'] %>
 	</p>
 	<p>
-		<%= p.submit text = "Add" %>
+		<%= p.submit "Add" %>
 	</p>
 <% end %>
