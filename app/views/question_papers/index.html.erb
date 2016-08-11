@@ -1,35 +1,4 @@
-<style>
-  #foo {
-    position: fixed;
-    top: 0;
-    right: 0;
-  }
-  </style>
-<% if session[:user]!=nil %>
-	<% puts "** index view email #{session[:user]["email"]}" %>
-	<div id ="foo">
-	<p>Welcome 
-	<%= session[:user]["email"] %>
-	<%= link_to "Log Out", sessions_logout_path, :method =>"get" %>
-	</p>
-	</div>
+<h2>List Of Subjects</h2>
+<% @question_papers.each do |question_paper| %>
+	<p><%= question_paper.subject %> <%= link_to "Start the test", problems_path(id: question_paper.id), :method => "get"%></p>
 <% end %>
-<h1>Problems to be Solved</h1>
-<% count=1 %>
-<% @problems.each do |problem| %>
-	<p>
-		<%= count %>.
-		<% count=count+1 %>
-		<%= problem.question %>
-	</p>
-	<%= radio_button_tag :"#{problem.id}", 'A' %>
-	<%= label :contactmethod_email, "#{problem.optionA}" %><br>
-	<%= radio_button_tag :"#{problem.id}", 'B' %>
-	<%= label :contactmethod_email, "#{problem.optionB}" %><br>
-	<%= radio_button_tag :"#{problem.id}", 'C' %>
-	<%= label :contactmethod_email, "#{problem.optionC}" %><br>
-	<%= radio_button_tag :"#{problem.id}", 'D' %>
-	<%= label :contactmethod_email, "#{problem.optionC}" %><br>
-<% end %>
-<br><br>
-<%= link_to "Add More Questions", new_question_paper_path, :method =>"get" %>

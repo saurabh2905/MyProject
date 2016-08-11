@@ -1,8 +1,11 @@
+<center><h4 style="color:green"><%= flash[:alert] %></h4></center>
+
+
 <h1>Add a Question</h1>
-<%= form_for :problem, url: question_papers_add_question_path, method: :POST do |p| %>
+<%= form_for :problem, url: problems_path, method: :POST do |p| %>
 	<p>
 		<%= label_tag(:subject,"Choose Subject") %>
-		<%= p.select :subject ,["Physics","Maths","Chemistry","Biology"] %>
+		<%= select_tag  :subject , options_for_select(["Physics","Maths","Chemistry","Biology"]) %>
 	</p>
 	<p>
 		<%= p.label :Problem_Statement %><br>

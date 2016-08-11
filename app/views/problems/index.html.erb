@@ -12,17 +12,15 @@
 	<%= session[:user]["email"] %>
 	<%= link_to "Log Out", sessions_logout_path, :method =>"get" %>
 	</p>
-
 	</div>
 <% end %>
-<h2>Subject : <%=@problems[0]["subject"]%></h2>
 <h1>Problems to be Solved</h1>
 
 <% count=1 %>
-<%= form_for :submitted_solution, url: question_papers_score_path, method: :POST do |m| %>
+<%= form_for :submitted_solution, url: solutions_path, method: :POST do |m| %>
 <% @problems.each do |problem| %>
 	<p>
-		<%= count %>.
+		<%= count %>
 		<% count=count+1 %>
 		<%= problem.question %>
 	</p>
@@ -37,6 +35,7 @@
 	<%= label :contactmethod_email, "#{problem.optionC}" %><br>
 	
 <% end %><br>
+<%= m.hidden_field :question_paper_id, :value => @problems[0].question_paper_id %>
 <%= m.hidden_field :count, :value => count-1 %>
 <%= m.submit "Submit"  %>
 <% end %>

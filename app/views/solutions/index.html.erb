@@ -1,0 +1,38 @@
+<style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 50%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+</style>
+<% count=1 %>
+<h4>Solutions Submitted : <%=@solutions.size %></h4>
+<table>
+	<tr>
+		<td>SI</td>
+		
+		<td>Score</td>
+		<td>Submitted On</td>
+		<td>View</td>
+	</tr>
+<% @solutions.each do |solution| %>
+	<tr>
+		<td><%= count %></td>
+		<td><%=solution[:score].to_s %>%</td>
+		<td><%= solution.updated_at.localtime.to_formatted_s(:db) %></td>
+		<td><%= link_to 'view', answers_path(id: solution.id), method: :"get" %></td>
+	</tr>
+	<% count= count+1 %>
+<% end %>
+</table>
+<%= link_to 'Write Another test', question_papers_path %>

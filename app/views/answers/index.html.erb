@@ -1,0 +1,22 @@
+<style type="text/css">
+	p{
+		margin: 0;
+	}
+</style>
+<h3>Submitted Solution</h3>
+<% count=1 %>
+<% @answers.each do |answer| %>
+	<% @problem = answer.problem %>
+	<p>
+	<p><%= count %>.
+		<% count=count +1%>
+		<%= @problem.question %>
+	</p>
+	<p>A. <%=@problem.optionA %></p>
+	<p>B. <%=@problem.optionB %></p>
+	<p>C. <%=@problem.optionC %></p>
+	<p>D. <%=@problem.optionD %></p>
+	<p style="color:green">Correct Option: <%=@problem.correct_choice %></p>
+	<p style="color:blue">You opted : <%=answer.submitted_choice %></p><br>
+	</p>
+<% end %>

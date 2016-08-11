@@ -10,7 +10,8 @@
 		<%= link_to "Log Out", sessions_logout_path, :method =>"get" %>
 	</p>
 </div>
-<td><%= link_to 'Start the test', question_papers_choose_subject_path %></td>
+<td><%= link_to 'Start the test', question_papers_path %></td>
 <% if @user.role=="admin" %>
-<td><%=link_to 'Add Questions', new_question_paper_path %></td>
+<td><%=link_to 'Add Questions', new_problem_path %></td>
 <% end %>	
+<p><%= link_to 'My Solutions', solutions_path %></p>
