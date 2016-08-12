@@ -5,6 +5,22 @@
     right: 0;
   }
   </style>
+
+<!--
+<div class="countdown"></div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        var date = new Date('<%= @timer.end_time %>'.replace(/\-/g,'\/').replace(/[T|Z]/g,' '));
+        alert(date)
+        $('.countdown').countdown({
+            until: date,
+            format: 'dHMS'
+        });
+    });
+
+</script>
+-->
 <% if session[:user]!=nil %>
 	<% puts "** index view email #{session[:user]["email"]}" %>
 	<div id ="foo">

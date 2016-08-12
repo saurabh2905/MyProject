@@ -2,6 +2,7 @@ class Solution < ApplicationRecord
 	belongs_to :user , dependent: :destroy
 	has_many :answers
 	belongs_to :question_paper
+	has_one :timer
 	def score
 		num_correct_answer= self.answers.correct.size
 		num_problems=self.question_paper.problems.length

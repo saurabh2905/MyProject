@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160808101218) do
+ActiveRecord::Schema.define(version: 20160812094708) do
 
   create_table "answers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "submitted_choice", limit: 1
@@ -53,14 +53,24 @@ ActiveRecord::Schema.define(version: 20160808101218) do
     t.index ["user_id"], name: "index_solutions_on_user_id", using: :btree
   end
 
+  create_table "timers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.datetime "time_spent"
+    t.integer  "solution_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.boolean  "finished"
+    t.index ["solution_id"], name: "index_timers_on_solution_id", using: :btree
+  end
+
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "email"
     t.string   "password"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
-    t.string   "role",        default: "public"
-    t.integer  "problems_id"
-    t.index ["problems_id"], name: "index_users_on_problems_id", using: :btree
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.string   "role",            default: "public"
+    t.string   "password_digest"
   end
 
   add_foreign_key "answers", "problems"
@@ -68,4 +78,5 @@ ActiveRecord::Schema.define(version: 20160808101218) do
   add_foreign_key "problems", "question_papers"
   add_foreign_key "solutions", "question_papers"
   add_foreign_key "solutions", "users"
+  add_foreign_key "timers", "solutions"
 end

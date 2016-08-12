@@ -6,12 +6,13 @@ class SessionsController < ApplicationController
 		end
 	end
 	def valid_login
-		@user=User.where("email = ? AND password = ?",params[:user][:email],params[:user][:password]).first
-		if @user.blank?
-			redirect_to new_session_path
-		else
+		puts "********** request.inspect   "+response.inspect
+		@user=User.where("email = ? ",params[:user][:email]).first
+		if @user.try(:authenticate, params[:user][:password])
 			session[:user]=@user
 			redirect_to users_my_profile_path
+		else
+			redirect_to new_session_path
 		end
 	end
 	def logout
